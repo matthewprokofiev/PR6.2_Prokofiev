@@ -1,0 +1,38 @@
+﻿<Page x:Class="PR4.Page3"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+      Title="Задание 3">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="15">
+            <TextBlock Text="Задание 3: Цикл и График" FontSize="16" FontWeight="Bold"/>
+            <Image Height="53" Source="/images/formula3.png" Stretch="Fill" Width="252"/>
+            <Label Content="x0 (начало):"/>
+            <TextBox x:Name="txtX0" Margin="2"/>
+            <Label Content="xk (конец):"/>
+            <TextBox x:Name="txtXk" Margin="2"/>
+            <Label Content="dx (шаг):"/>
+            <TextBox x:Name="txtDx" Margin="2"/>
+            <Label Content="Параметр b:"/>
+            <TextBox x:Name="txtB" Margin="2"/>
+
+            <Button Content="Рассчитать и построить" Margin="0,10,0,10" Click="Calc_Click"/>
+
+            <Label Content="Список значений:"/>
+            <TextBox x:Name="txtResults" Height="14" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Background="#F9F9F9" ToolTip="Список (x, y)"/>
+        </StackPanel>
+
+        <WindowsFormsHost Grid.Column="1" Margin="10" x:Name="WFHost">
+            <charts:Chart x:Name="MyChart">
+                <charts:Chart.Legends>
+                    <charts:Legend Title="Легенда"/>
+                </charts:Chart.Legends>
+            </charts:Chart>
+        </WindowsFormsHost>
+    </Grid>
+</Page>

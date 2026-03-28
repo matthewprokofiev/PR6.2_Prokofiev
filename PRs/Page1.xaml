@@ -1,0 +1,31 @@
+﻿<Page x:Class="PR4.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Задание 1">
+    <Grid Background="White">
+        <StackPanel Margin="20" HorizontalAlignment="Left">
+            <TextBlock Text="Задание 1: Расчет формулы" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <Image Source="/images/formula1.png" Height="80" Margin="0,0,0,15" ToolTip="Формула: γ = 5arctg(x) - 1/4arccos(x)..."/>
+
+            <UniformGrid Columns="2" Width="300" HorizontalAlignment="Left">
+                <Label Content="Введите x:" VerticalAlignment="Center" ToolTip="Значение x для arccos (от -1 до 1)"/>
+                <TextBox x:Name="txtX" Margin="5" ToolTip="Введите число x"/>
+
+                <Label Content="Введите y:" VerticalAlignment="Center" ToolTip="Значение y"/>
+                <TextBox x:Name="txtY" Margin="5" ToolTip="Введите число y"/>
+
+                <Label Content="Введите z:" VerticalAlignment="Center" ToolTip="Значение z"/>
+                <TextBox x:Name="txtZ" Margin="5" ToolTip="Введите число z"/>
+            </UniformGrid>
+
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,15">
+                <Button Content="Вычислить" Width="100" Margin="0,0,10,0" Click="Calc_Click" ToolTip="Рассчитать результат"/>
+                <Button Content="Очистить" Width="100" Click="Clear_Click" ToolTip="Сбросить все поля"/>
+            </StackPanel>
+
+            <Label Content="Результат (γ):"/>
+            <TextBox x:Name="txtResult" Width="300" HorizontalAlignment="Left" IsReadOnly="True" Background="#F0F0F0" ToolTip="Результат вычисления (только для чтения)"/>
+        </StackPanel>
+    </Grid>
+</Page>
