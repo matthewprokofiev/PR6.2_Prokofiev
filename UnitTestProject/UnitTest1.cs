@@ -4,49 +4,21 @@ using PR4;
 
 namespace UnitTestProject
 {
-    // ===========================================================================
-    //  Тренировочный тест (из задания) — демонстрирует методы Assert
-    // ===========================================================================
-
-    /// <summary>
-    /// Тренировочный тест, демонстрирующий основные методы объекта <see cref="Assert"/>.
-    /// </summary>
     [TestClass]
-    public class TrainingTests
+    public class UnitTest1
     {
-        /// <summary>
-        /// Проверяет работу методов Assert: AreEqual, IsTrue, IsFalse, IsNull, IsNotNull.
-        /// <para>
-        /// Вывод: <br/>
-        /// — <c>Assert.AreEqual</c>  — проверяет равенство двух значений (с допуском delta для double). <br/>
-        /// — <c>Assert.IsTrue</c>   — проверяет, что условие истинно. <br/>
-        /// — <c>Assert.IsFalse</c>  — проверяет, что условие ложно. <br/>
-        /// — <c>Assert.IsNull</c>   — проверяет, что объект равен null. <br/>
-        /// — <c>Assert.IsNotNull</c>— проверяет, что объект не равен null.
-        /// </para>
-        /// </summary>
         [TestMethod]
         public void TestMethod1()
         {
-            // AreEqual: числа, строки, с допустимой погрешностью
-            Assert.AreEqual(4, 2 + 2);
-            Assert.AreEqual("hello", "hel" + "lo");
-            Assert.AreEqual(0.3, 0.1 + 0.2, 1e-10);   // delta — допуск для double
-
-            // IsTrue / IsFalse
-            Assert.IsTrue(5 > 3);
-            Assert.IsFalse(5 < 3);
-
-            // IsNull / IsNotNull
-            string? nullStr = null;
-            Assert.IsNull(nullStr);
-            Assert.IsNotNull("not null");
+            int res = 2 + 2;
+            Assert.AreEqual(res, 4);
+            Assert.AreNotEqual(res, 5);
+            Assert.IsFalse(res > 5);
+            Assert.IsTrue(res < 5);
         }
     }
 
-    // ===========================================================================
-    //  Тесты для Page1 — формула с arctg / arccos
-    // ===========================================================================
+    //  Тесты для Page1
 
     /// <summary>
     /// Модульные тесты для метода <see cref="Page1.Calculate"/>.
@@ -69,7 +41,6 @@ namespace UnitTestProject
         public void Calculate_ValidInputs_ReturnsExpected()
         {
             double result = Page1.Calculate(0.5, 1.0, 2.0);
-            // Проверяем диапазон — тест прошёл, если результат разумен
             Assert.IsTrue(result > -100 && result < 100,
                 $"Результат {result} вышел за ожидаемые рамки");
         }
@@ -82,7 +53,6 @@ namespace UnitTestProject
         [ExpectedException(typeof(DivideByZeroException))]
         public void Calculate_ZeroDenominator_ThrowsDivideByZero()
         {
-            // x=0, y=0 → znam = 0*z + 0 = 0
             Page1.Calculate(0.0, 0.0, 5.0);
         }
 
@@ -119,9 +89,7 @@ namespace UnitTestProject
         }
     }
 
-    // ===========================================================================
-    //  Тесты для Page2 — кусочная функция S(x, b, f)
-    // ===========================================================================
+    //  Тесты для Page2
 
     /// <summary>
     /// Модульные тесты для методов <see cref="Page2.Calculate"/> и <see cref="Page2.ComputeFx"/>.
@@ -130,8 +98,6 @@ namespace UnitTestProject
     public class Page2Tests
     {
         private const double Delta = 1e-4;
-
-        // --- ComputeFx ---
 
         /// <summary>
         /// Sinh при x=1: sh(1) ≈ 1.17520.
@@ -162,8 +128,6 @@ namespace UnitTestProject
             double result = Page2.ComputeFx(0.0, FunctionType.Exp);
             Assert.AreEqual(1.0, result, Delta);
         }
-
-        // --- Calculate: ветки условий ---
 
         /// <summary>
         /// Ветка x*b ∈ (1, 10): S = e^f(x).
@@ -214,9 +178,7 @@ namespace UnitTestProject
         }
     }
 
-    // ===========================================================================
-    //  Тесты для Page3 — таблица значений y = 9*(x + 15*∛(x³+b³))
-    // ===========================================================================
+    //  Тесты для Page3
 
     /// <summary>
     /// Модульные тесты для методов <see cref="Page3.ComputeY"/> и <see cref="Page3.BuildTable"/>.
@@ -225,8 +187,6 @@ namespace UnitTestProject
     public class Page3Tests
     {
         private const double Delta = 1e-3;
-
-        // --- ComputeY ---
 
         /// <summary>
         /// При x=0, b=0: val=0, cbrt=0 → y = 9*(0+0) = 0.
@@ -258,8 +218,6 @@ namespace UnitTestProject
             double result = Page3.ComputeY(-1.0, 0.0);
             Assert.AreEqual(-144.0, result, Delta);
         }
-
-        // --- BuildTable ---
 
         /// <summary>
         /// Нулевой или отрицательный шаг должен вызывать <see cref="ArgumentException"/>.
